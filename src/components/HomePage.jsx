@@ -16,7 +16,7 @@ export default function HomePage(props) {
         console.log('start recording')
 
         try {
-            const streamData = navigator.mediaDevices.getUserMedia({
+            const streamData = await navigator.mediaDevices.getUserMedia({
                 audio: true,
                 video: false
             })
@@ -47,7 +47,7 @@ export default function HomePage(props) {
 
     async function stopRecording() {
         setRecordingStatus('inactive')
-        console.log('stop recording')
+        console.log('Stop recording')
 
         mediaRecorder.current.stop()
         mediaRecorder.current.onstop = () => {
@@ -69,16 +69,16 @@ export default function HomePage(props) {
     })
 
     return (
-        <main className='flex-1 p-4 flex flex-col text-center gap-3 sm:gap-4 md:gap-5 justify-center pb-20'>
+        <main className='flex-1 p-4 flex flex-col text-center gap-3 sm:gap-4 justify-center pb-20'>
             <h1 className='font-semibold text-5xl sm:text-6xl md:text-7xl'>Easy<span className='text-blue-400 bold'>Scribe</span></h1>
             <h3 className='font-medium md:text-lg'>Record <span className='text-blue-400'>&rarr;</span> Transcribe <span>&rarr;</span> Translate</h3>
             <button onClick={recordingStatus === 'recording'? stopRecording : startRecording} className='flex spacialBtn px-4 py-2 rounded-xl items-center text-base justify-between gap-4 mx-auto w-72 max-w-full my-4'>
-                <p className='text-blue-400'>{recordingStatus === 'inactive' ? 'Record' : `stop recording`}</p>
+                <p className='text-blue-400'>{recordingStatus === 'inactive' ? 'Record' : `Stop recording`}</p>
                 <div className='flex items-center gap-2'>
                     {duration && (
                         <p className='text-sm'>{duration}s</p>
                     )}
-                    <i className={"fa-solid duration-200 fa-microphone" + (recordingStatus === 'recording'? 'text-rose-300' : '' )}></i>
+                    <i className={"fa-solid duration-200 fa-microphone " + (recordingStatus === 'recording' ? ' text-rose-300' : "")}></i>
                 </div>
             </button>
             <p className='text-base'>Or <label className='text-blue-400 cursor-pointer hover:text-blue-600 duration-200'>upload
