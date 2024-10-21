@@ -10,7 +10,7 @@ function App() {
   const [file, setFile] = useState(null)
   const [audioStream, setAudioStream] = useState(null)
   const [output, setOutput] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const isAudioAvailable = file || audioStream
 
@@ -38,7 +38,6 @@ function App() {
         )}
         
       </section>
-      <h1 className='text-green-400'>Hello</h1>
       <footer></footer>
     </div>
   )
